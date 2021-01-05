@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Register</title>
+		<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
+    </head>
+
+    <script>
+        function uuidv4() {
+            stringId = ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c =>
+                (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
+            );
+
+            document.getElementById("tokenArea").value = stringId;
+            
+            //generate token only once
+            document.getElementById("generator").disabled = true;
+        }
+    </script>
+
+    <!-- <script>
+        const form = document.getElementById('registration');
+            form.addEventListener("change", () => {
+                document.getElementById('submitBtn').disabled = !form.checkValidity()
+            });
+    </script> -->
+    
+	<body>
+		<div class="register">
+			<h1>Register New Employees</h1>
+        
+			<form id = "registration" method="post">
+
+                <label for="email">
+					<i class="fas fa-envelope"></i>
+				</label>
+                <input type="email" name="email" placeholder="Email" id="email" required>
+                
+				<label for="token">
+					<i class="fas fa-lock"></i>
+                </label>
+
+                <input type="token" name="token" placeholder="Token" id="tokenArea" style = "width: 300px" disabled required>
+                <button type="button" id="generator" onclick="uuidv4()">Generate Token</button>
+
+                <input type="submit" id="submitBtn"/> 
+                <!-- disable here -->
+            </form>
+        </div>
+
+        <br>
+        <br>
+
+
+
+        <div class="registered_employees">
+            <style>
+                table, th, td {
+                  border: 1px solid black;
+                  border-collapse: collapse;
+                }
+            </style>
+            
+            <h1>Registered Employees</h1>
+
+            <table style="width:50%">
+                <tr>
+                  <th>Name</th>
+                  <th>Generated Token</th>
+                </tr>
+                <tr>
+                  <td>Jill</td>
+                  <td>blablabla</td>
+                </tr>
+                <tr>
+                  <td>Eve</td>
+                  <td>Blablabla</td>
+                </tr>
+              </table>
+        </div>
+
+   
+</html>
