@@ -2,15 +2,14 @@
 # # openssl rand -hex 32
 import jwt
 import uuid
-number = 3
-result = {}
 
+def token_generation(number):
+    result = {}
+    for i in range(number):
+        SECRET_KEY = str(uuid.uuid4())
+        encoded_jwt = jwt.encode({"some": "payload"}, SECRET_KEY, algorithm="HS256")
+        result[i+1] = encoded_jwt
 
-for i in range(number):
-    SECRET_KEY = str(uuid.uuid4())
-    encoded_jwt = jwt.encode({"some": "payload"}, SECRET_KEY, algorithm="HS256")
-    result[i+1] = encoded_jwt
+    return result
 
-
-for key, value in result.items():
-    print(key, ' : ', value)
+print(token_generation(3))
